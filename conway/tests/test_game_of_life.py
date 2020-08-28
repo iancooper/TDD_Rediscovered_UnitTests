@@ -6,6 +6,7 @@ Notes:
 
 from conway import Board, Cell, Row
 
+
 def test_we_can_create_a_board():
     board = Board(3, 3)
 
@@ -20,14 +21,10 @@ def test_we_can_create_a_row():
     for c in range(row.cols):
         assert str(row[c]) == "."
 
+
 def test_we_can_read_a_cell():
     cell = Cell()
 
     assert str(cell) == "."
 
-
-
-
-
-
-
+# Test that a cell can be live too

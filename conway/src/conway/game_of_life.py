@@ -21,6 +21,9 @@ class Row:
         self.cols = cols
         self._cells = [Cell() for n in range(self.cols)]
 
+    def __getitem__(self, key):
+        return self._cells[key]
+
 class Cell:
     def __str__(self):
         return "."
