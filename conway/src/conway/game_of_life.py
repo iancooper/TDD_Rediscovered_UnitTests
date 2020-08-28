@@ -7,9 +7,10 @@ Notes:
 from typing import Any
 
 class Board:
-    def __init__(self, rows:int, cols:int):
+    def __init__(self, generation:int, rows:int, cols:int):
         self.rows = rows
         self.cols = cols
+        self.generation = generation
 
         self ._rows = [Row(cols) for n in range(self.rows)]
 

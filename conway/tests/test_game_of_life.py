@@ -8,7 +8,7 @@ from conway import Board, Cell, Row
 
 
 def test_we_can_create_a_board():
-    board = Board(3, 3)
+    board = Board(0, 3, 3)
 
     for r in range(board.rows):
         for j in range(board.cols):
@@ -26,5 +26,9 @@ def test_we_can_read_a_cell():
     cell = Cell()
 
     assert str(cell) == "."
+
+def test_a_board_has_a_gen_identifier():
+    board = Board(0, 3,3 )
+    assert board.generation == 0
 
 # Test that a cell can be live too
