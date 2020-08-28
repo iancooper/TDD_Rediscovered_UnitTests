@@ -41,7 +41,7 @@ class Row:
         return self._cells[key]
 
     def __str__(self):
-        return "...."
+        return "".join("." for i in range(self.cols))
 
 class Cell:
     def __str__(self):
