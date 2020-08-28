@@ -17,6 +17,11 @@ class Board:
         return self._rows[key]
 
 class Row:
-    pass
+    def __init__(self, cols: int):
+        self.cols = cols
+        self._cells = [Cell() for n in range(self.cols)]
 
+class Cell:
+    def __str__(self):
+        return "."
 
