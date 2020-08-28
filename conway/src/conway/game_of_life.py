@@ -11,5 +11,12 @@ class Board:
         self.rows = rows
         self.cols = cols
 
+        self ._rows = [Row(cols) for n in range(self.rows)]
+
     def __getitem__(self, key):
-        return []
+        return self._rows[key]
+
+class Row:
+    pass
+
+
