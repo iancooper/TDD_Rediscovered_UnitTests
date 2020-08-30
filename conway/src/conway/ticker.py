@@ -16,4 +16,10 @@ def tick(board: Board):
                     new_board[r][c] = "*"
                 else:
                     new_board[r][c] = "."
+            else:
+                live_count = board.get_live_neigbour_count(r, c)
+                if live_count == 3:
+                    new_board[r][c] = "*"
+                else:
+                    new_board[r][c] = "."
     return new_board
