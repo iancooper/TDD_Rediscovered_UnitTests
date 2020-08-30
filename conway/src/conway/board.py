@@ -26,6 +26,9 @@ class Board:
             view.append(str(self[r]) + "\n")
         return "".join(view)
 
+    def get_live_neigbour_count(self, row, col):
+        pass
+
 
 class Size:
     def __init__(self, rows: int, cols: int):
