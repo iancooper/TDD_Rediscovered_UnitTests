@@ -6,6 +6,7 @@ Notes:
 from typing import Tuple
 from conway import Board, Size
 
+
 class Seeder:
 
     def __init__(self, board: Board):
@@ -14,4 +15,3 @@ class Seeder:
     def generate_board(self, size: Size, *args: Tuple[int, int]) -> None:
         for arg in args:
             self._board[arg[0]][arg[1]] = "*"
-
