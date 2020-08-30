@@ -54,7 +54,7 @@ def test_we_can_read_a_cell():
 
 def test_a_board_has_a_gen_identifier():
     """A board has a generatio"""
-    board = Board(0, Size(3, 3), [row_one, row_two, row_three])
+    board = Board(0, Size(3, 3))
     assert board.generation == 0
 
 

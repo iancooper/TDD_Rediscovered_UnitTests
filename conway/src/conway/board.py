@@ -44,6 +44,9 @@ class Row:
     def __getitem__(self, key):
         return self._cells[key]
 
+    def __setitem__(self, key, value):
+        self._cells[key] = value
+
     def __str__(self):
         view = []
         for i in range(self.cols):
