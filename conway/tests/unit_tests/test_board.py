@@ -5,23 +5,44 @@ Notes:
 """
 
 from conway import Board, Cell, Row, Size
+from mock import Mock
 
 
 def test_we_can_create_a_board():
     """We want to create a simple 3 * 3 board that defaults to dead cells"""
-    board = Board(0, Size(3, 3))
+    row = Mock(Row)
+    cell = Mock(Cell)
+    cell.__str__ = Mock()
+    cell.__str__.return_value = "."
+
+    def get_item(key):
+        return cell
+
+    row.__getitem__ = Mock()
+    row.__getitem__.side_effect = get_item
+
+    board = Board(0, Size(3, 3), [row, row, row])
 
     for r in range(board.rows):
         for j in range(board.cols):
             assert str(board[r][j]) == "."
 
 
+    assert cell.__str__.call_count == 9
+
+
 def test_we_can_create_a_row():
     """We want to create a row with dead cells"""
-    row = Row(3)
+    cell = Mock(Cell)
+    cell.__str__ = Mock()
+    cell.__str__.return_value = "."
+
+    row = Row(3, [cell, cell, cell])
 
     for c in range(row.cols):
         assert str(row[c]) == "."
+
+    assert cell.__str__.call_count == 3
 
 
 def test_we_can_read_a_cell():
@@ -33,7 +54,7 @@ def test_we_can_read_a_cell():
 
 def test_a_board_has_a_gen_identifier():
     """A board has a generatio"""
-    board = Board(0, Size(3, 3))
+    board = Board(0, Size(3, 3), [row_one, row_two, row_three])
     assert board.generation == 0
 
 
@@ -46,7 +67,18 @@ def test_a_size_has_two_dimensions():
 
 def test_render_a_board():
     """We want to render a board, which is a good way to check it"""
-    board = Board(0, Size(3, 4))
+    row = Mock(Row)
+    cell = Mock(Cell)
+    cell.__str__ = Mock()
+    cell.__str__.return_value = "."
+
+    def get_item(key):
+        return cell
+
+    row.__getitem__ = Mock()
+    row.__getitem__.side_effect = get_item
+
+    board = Board(0, Size(3, 4), [row, row, row])
     expected_board = ("Generation 0\n"
                       "3 4\n"
                       "....\n"
@@ -59,17 +91,26 @@ def test_render_a_board():
 
 def test_render_a_row_with_four_cols():
     """We should produce 4 dead cells from a default row with 4 columns"""
-    row = Row(4)
+    cell = Mock(Cell)
+    cell.__str__ = Mock()
+    cell.__str__.return_value = "."
+
+    row = Row(4, [cell, cell, cell, cell])
     expected_row = "...."
 
     assert expected_row == str(row)
+    assert cell.__str__.call_count == 4
 
 
 def test_render_a_row_with_five_cols():
     """We should produce 5 dead cells rom a default row with 5 columns"""
-    row = Row(5)
+    cell = Mock(Cell)
+    cell.__str__ = Mock()
+    cell.__str__.return_value = "."
+
+    row = Row(5, [cell, cell, cell, cell, cell])
     expected_row = "....."
 
     assert expected_row == str(row)
+    assert cell.__str__.call_count == 5
 
-# Test that a cell can be live too

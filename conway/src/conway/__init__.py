@@ -5,3 +5,5 @@ Notes:
 """
 
 from conway.board import *
+from conway.seeder import *
+
