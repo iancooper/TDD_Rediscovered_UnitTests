@@ -27,7 +27,6 @@ def test_we_can_create_a_board():
         for j in range(board.cols):
             assert str(board[r][j]) == "."
 
-
     assert cell.__str__.call_count == 9
 
 
@@ -113,4 +112,42 @@ def test_render_a_row_with_five_cols():
 
     assert expected_row == str(row)
     assert cell.__str__.call_count == 5
+
+
+def test_count_two_live_neighbours():
+    """We should be able to count our live neighbours"""
+    row_one = Mock(Row)
+    row_one.__getitem__ = Mock()
+
+    row_one_cellstates = [".", "*", "."]
+    def get_row_one_cell(key):
+        return row_one_cellstates[key]
+
+    row_one.__getitem__.side_effect = get_row_one_cell
+
+    row_two = Mock(Row)
+    row_two.__getitem__ = Mock()
+
+    row_two_cellstates = [".", "*", "."]
+    def get_row_two_cell(key):
+        return row_two_cellstates[key]
+
+    row_two.__getitem__.side_effect = get_row_two_cell
+
+    row_three = Mock(Row)
+    row_three.__getitem__ = Mock()
+
+    row_three_cellstates = [".", "*", "."]
+    def get_row_three_cell(key):
+        return row_three_cellstates[key]
+
+    row_three.__getitem__.side_effect = get_row_three_cell
+
+    board = Board(0, Size(3, 3), [row_one, row_two, row_three])
+
+    assert board.get_live_neigbour_count(0, 1) == 1
+    assert board.get_live_neigbour_count(1, 1) == 2
+    assert board.get_live_neigbour_count(1, 1) == 1
+
+
 

@@ -19,15 +19,33 @@ class Board:
         return self._rows[key]
 
     def __str__(self):
-        view = []
-        view.append(f"Generation {self.generation}\n")
-        view.append(str(Size(self.rows, self.cols)) + "\n")
+        view = [f"Generation {self.generation}\n", str(Size(self.rows, self.cols)) + "\n"]
         for r in range(self.rows):
             view.append(str(self[r]) + "\n")
         return "".join(view)
 
-    def get_live_neigbour_count(self, row, col):
-        pass
+    def get_live_neigbour_count(self, row: int, col:int):
+        live_count = 0
+        live_count += self._get_row_live_count(row -1, col)
+        live_count += self._get_row_live_count(row, col, True)
+        live_count += self._get_row_live_count(row +1, col)
+
+        return live_count
+
+    def _get_row_live_count(self, row: int, col: int, exclude: bool = False):
+        """count the live cells in a row, in col and either side"""
+        if row < 0 or row > self.rows:
+            return 0
+
+        board_row = self._rows[row]
+
+        live_count = 0
+        if col -1 > 0 and board_row[col-1] == "*":
+            live_count += 1
+        if not exclude and board_row[col] == "*":
+            live_count += 1
+        if col + 1 < self.cols and board_row[col + 1] == "*":
+            live_count += 1
 
 
 class Size:
