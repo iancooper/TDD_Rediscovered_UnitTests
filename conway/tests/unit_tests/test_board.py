@@ -67,15 +67,8 @@ def test_a_size_has_two_dimensions():
 def test_render_a_board():
     """We want to render a board, which is a good way to check it"""
     row = Mock(Row)
-    cell = Mock(Cell)
-    cell.__str__ = Mock()
-    cell.__str__.return_value = "."
-
-    def get_item(key):
-        return cell
-
-    row.__getitem__ = Mock()
-    row.__getitem__.side_effect = get_item
+    row.__str__ = Mock()
+    row.__str__.return_value = "...."
 
     board = Board(0, Size(3, 4), [row, row, row])
     expected_board = ("Generation 0\n"
@@ -147,7 +140,7 @@ def test_count_two_live_neighbours():
 
     assert board.get_live_neigbour_count(0, 1) == 1
     assert board.get_live_neigbour_count(1, 1) == 2
-    assert board.get_live_neigbour_count(1, 1) == 1
+    assert board.get_live_neigbour_count(2, 1) == 1
 
 
 

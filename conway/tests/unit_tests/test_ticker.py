@@ -90,9 +90,8 @@ def test_a_cell_with_two_or_three_neighbours_lives(fake_board):
     assert str(new_board[1][2]) == "*"
     assert str(new_board[2][1]) == "*"
 
-# test to prove that when you are surrounded by x live cells and are dead you wake up
-
 def test_a_dead_cell_with_three_live_neighbours_lives(fake_board):
+    """ test to prove that when you are surrounded by x live cells and are dead you wake up"""
     board = fake_board[0]
     cells = fake_board[1]
     cells[1][0] = "*"

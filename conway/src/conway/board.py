@@ -34,7 +34,7 @@ class Board:
 
     def _get_row_live_count(self, row: int, col: int, exclude: bool = False):
         """count the live cells in a row, in col and either side"""
-        if row < 0 or row > self.rows:
+        if row < 0 or row >= self.rows:
             return 0
 
         board_row = self._rows[row]
@@ -47,6 +47,7 @@ class Board:
         if col + 1 < self.cols and board_row[col + 1] == "*":
             live_count += 1
 
+        return live_count
 
 class Size:
     def __init__(self, rows: int, cols: int):
