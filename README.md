@@ -1,5 +1,4 @@
-# TDD_Rediscovered - UnitTests
-# TDD Rediscovered - ProgrammerTests
+# TDD Rediscovered - UnitTests
 
 ## What is this?
 
